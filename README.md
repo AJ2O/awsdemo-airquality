@@ -20,9 +20,9 @@ You have been asked to identify the top regions in the US with the highest avera
 Included in this repository is a [Terraform script](main.tf) that will automatically set up the solution resources in AWS. If you don't already, I highly recommend using Terraform as an [Infrastructure as Code](https://www.hashicorp.com/resources/what-is-infrastructure-as-code) tool to automate the setup of your cloud environments. It's compatible with a hundreds of cloud providers, including Microsoft Azure, Google Cloud Platform, VMware vSphere and Kubernetes. It can be downloaded from [HashiCorp's official website](https://www.terraform.io/downloads.html).
 
 ### Requirement 1.
-After searching online, I found that the **United States Environmental Protection Agency** has [public air quality data](https://www.epa.gov/outdoor-air-quality-data) available across the US at the state, county, and city levels. It can be accessed either [live on the website](https://www.epa.gov/outdoor-air-quality-data/download-daily-data), [via API](https://aqs.epa.gov/aqsweb/documents/data_api.html), or by [downloading CSV files](https://aqs.epa.gov/aqsweb/airdata/download_files.html).
+After searching online, I found that the **United States Environmental Protection Agency (EPA)** has [public air quality data](https://www.epa.gov/outdoor-air-quality-data) available across the US at the state, county, and city levels. It can be accessed either [live on the website](https://www.epa.gov/outdoor-air-quality-data/download-daily-data), [via API](https://aqs.epa.gov/aqsweb/documents/data_api.html), or by [downloading CSV files](https://aqs.epa.gov/aqsweb/airdata/download_files.html).
 
-I selected to download the [daily summary data CSV for Ozone in 2018](https://aqs.epa.gov/aqsweb/airdata/download_files.html#Daily) for two reasons:
+I selected to download the [Daily Summary Data CSV for Ozone in 2018](https://aqs.epa.gov/aqsweb/airdata/download_files.html#Daily) for two reasons:
 - **1.** The API has a daily limit on the amount of times it can be called, which could be problematic if we have to query it many times a day. If we have a copy of the data locally, we can run as many queries as we want against it.
 - **2.** We at least need daily data for 2018 to answer [requirement 3](#3-what-city-had-the-highest-average-ozone-reading-on-october-9-2018).
 
@@ -34,6 +34,11 @@ Athena has native support for running SQL queries against CSV files in S3, and s
 The file is also small enough to stay within [S3 Free Tier](https://calculator.aws/#/estimate?id=17b2dff3fa28f1c5ece27caf7ccda3855e4cf4d2), so that's why I chose S3 to store the data.
 
 Both services are also very easy to set up, manage, and run. All we need to do is upload the data to S3, and run simple SQL queries.
+
+#### Alternatives
+Alternatives that could be used include database services such as [RDS](https://aws.amazon.com/rds/) and [DynamoDB](https://aws.amazon.com/dynamodb/). The problem with those solutions however, is that we need to configure the databases before we can run queries. This includes creating the tables, schemas, database instance (in the case of RDS), and other service-specific settings. We would also need to then populate the databases with the air quality data. 
+
+We already have a full, structured data set in the CSV files provided by the EPA,  so we shouldn't need to burden ourselves with unnecessary work. We can just download them, drop them into S3, and start running queries immediately with Athena.
 
 ### Requirement 3.
 I ran the query in the AWS CLI, and the answer was Kelso, California at an average ozone reading of `0.060353` on October 9, 2018. If you want to try out the query, remember to replace the workgroup with your own: 
