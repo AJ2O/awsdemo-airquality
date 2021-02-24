@@ -22,7 +22,7 @@ Included in this repository is a [Terraform](main.tf) script that will automatic
 ### Requirement 1.
 After searching online, I found that the **United States Environmental Protection Agency** has [public air quality data](https://www.epa.gov/outdoor-air-quality-data) available across the US at the state, county, and city levels. It can be accessed either [live on the website](https://www.epa.gov/outdoor-air-quality-data/download-daily-data), [via API](https://aqs.epa.gov/aqsweb/documents/data_api.html), or by [downloading CSV files](https://aqs.epa.gov/aqsweb/airdata/download_files.html).
 
-I selected to download the [daily summary CSV for Ozone in 2018](https://aqs.epa.gov/aqsweb/airdata/download_files.html#Daily) for Ozone for two reasons:
+I selected to download the [daily summary data CSV for Ozone in 2018](https://aqs.epa.gov/aqsweb/airdata/download_files.html#Daily) for two reasons:
 - **1.** The API has a daily limit on the amount of times it can be called, which could be problematic if we have to query it many times a day. If we have a copy of the data locally, we can run as many queries as we want against it.
 - **2.** We at least need daily data for 2018 to answer [requirement 3](#3-what-city-had-the-highest-average-ozone-reading-on-october-9-2018).
 
