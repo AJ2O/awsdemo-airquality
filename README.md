@@ -1,5 +1,5 @@
 # AWS Demo: Air Quality Analysis
-This was a freestyle project to choose any combination of AWS services to solve an example problem.
+This was a freestyle project to choose any combination of AWS services to solve a problem.
 
 # The Situation
 You work for a US-based, non-profit organization that promotes better environmental conditions in communities most in need.
