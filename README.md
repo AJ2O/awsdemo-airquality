@@ -29,7 +29,7 @@ I selected to download the [daily summary data CSV for Ozone in 2018](https://aq
 ### Requirement 2.
 For AWS services, I chose [Amazon S3](https://aws.amazon.com/s3/) to store the CSV, and [Amazon Athena](https://aws.amazon.com/athena/) to query it.
 
-Athena has native support for running SQL queries against CSV files in S3, and since the CSV file was only 122 MB, it would be very cheap to query the data. In fact, we could run [50 queries per day for less than a dollar a month](https://calculator.aws/#/estimate?id=60ca0679dee0e4df1ed1b6ed4a7878d520bee2f0).
+Athena has native support for running SQL queries against CSV files in S3, and since the CSV file was only 122 MB, it would be very cheap to query the data. In fact, we could run [1500+ Athena queries per month for less than a dollar](https://calculator.aws/#/estimate?id=f79f51a96264e7745f865a29e144268afa49ade7).
 
 The file is also small enough to stay within [S3 Free Tier](https://calculator.aws/#/estimate?id=17b2dff3fa28f1c5ece27caf7ccda3855e4cf4d2), so that's why I chose S3 to store the data.
 
